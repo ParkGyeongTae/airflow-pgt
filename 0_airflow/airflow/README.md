@@ -1,6 +1,5 @@
 # /airflow-pgt/0_airflow
 
-
 ## DAG
 1. dag_id = 'first_dag',
 2. default_args = default_args,
@@ -11,7 +10,6 @@
 7. schedule_interval = timedelta(minutes = 1), : 1분마다
 8. catchup = False,
 9. tags = ['박경태', 'sample'] : 태그
-
 
 ## 기타
 1. airflow db init

@@ -2,6 +2,19 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
 
+default_args = {
+	'owner' : 'ParkGyeongTae'
+}
+
+dag = DAG (
+	dag_id            = 'my_first_python_dag',
+	start_date        = datetime(2022, 4, 16),
+	schedule_interval = '* * * * *',
+	catchup           = False,
+	tags              = ['박경태'],
+	description       = 'Sample',
+	default_args      = default_args
+	)
 
 def print_1():
 	print("111")
@@ -26,13 +39,6 @@ def print_5():
 def print_6():
 	print("666")
 	return "666"
-
-dag = DAG (
-	dag_id            = 'my_python_dag',
-	start_date        = datetime(2022, 4, 16),
-	schedule_interval = '* * * * *',
-    catchup           = False
-    )
 
 print_11 = PythonOperator (
 	task_id         = 'print_1',
