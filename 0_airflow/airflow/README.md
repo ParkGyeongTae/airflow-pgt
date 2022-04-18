@@ -16,4 +16,4 @@
 ## 기타
 1. airflow db init
 2. airflow scheduler -D
-3. airflow webserver -D -p 28080
+3. airflow webserver -D -p 8080

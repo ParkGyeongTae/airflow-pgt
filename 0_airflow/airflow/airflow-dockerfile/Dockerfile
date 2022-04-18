@@ -68,4 +68,4 @@ COPY ./airflow/airflow-entrypoint/entrypoint-airflow.sh /usr/local/bin/
 
 # EXPOSE 8080
 
-ENTRYPOINT entrypoint-airflow.sh
+# ENTRYPOINT entrypoint-airflow.sh
