@@ -1,0 +1,34 @@
+version: '2.1'
+
+services:
+
+  airflow:
+    hostname: airflow
+    container_name: airflow
+    image: airflow-pgt:0.01
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 28080:8080
+    volumes:
+      - type: bind
+        source: ./airflow/airflow-dags/
+        target: /home/dags/
+        read_only: false
+      - type: bind
+        source: ./airflow/airflow-code/
+        target: /home/code/
+        read_only: false
+    depends_on:
+      - postgresql-airflow
+
+  postgresql-airflow:
+    hostname: postgresql-airflow
+    container_name: postgresql-airflow
+    image: postgresql-airflow-pgt:0.01
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - 15432:15432
