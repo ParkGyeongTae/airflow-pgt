@@ -8,11 +8,11 @@ default_args = {
 
 dag = DAG (
 	dag_id            = 'my_first_python_dag',
-	start_date        = datetime(2022, 4, 16),
+	start_date        = datetime(2022, 5, 4),
 	schedule_interval = '* * * * *',
 	catchup           = False,
-	tags              = ['박경태'],
-	description       = 'Sample',
+	tags              = ['test'],
+	description       = 'Python Operator Sample',
 	default_args      = default_args
 	)
 
