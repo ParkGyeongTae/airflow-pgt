@@ -66,6 +66,4 @@ COPY ./airflow/airflow-code /home/code
 # entrypoint 파일 옮기기
 COPY ./airflow/airflow-entrypoint/entrypoint-airflow.sh /usr/local/bin/
 
-# EXPOSE 8080
-
-# ENTRYPOINT entrypoint-airflow.sh
+ENTRYPOINT entrypoint-airflow.sh
