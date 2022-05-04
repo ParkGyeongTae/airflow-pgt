@@ -7,7 +7,7 @@ default_args = {
 }
 
 dag = DAG (
-	dag_id            = 'my_first_bash_dag',
+	dag_id            = '2_bash_operator',
 	start_date        = datetime(2022, 5, 4),
 	schedule_interval = '* * * * *',
 	catchup           = False,
