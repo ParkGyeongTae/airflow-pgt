@@ -38,7 +38,9 @@ services:
     image: dpage/pgadmin4:6.8
     restart: always
     ports:
-     - 8088:80
+      - 8088:80
     environment:
-     - PGADMIN_DEFAULT_EMAIL=pgt@pgt.com
-     - PGADMIN_DEFAULT_PASSWORD=pgt
+      - PGADMIN_DEFAULT_EMAIL=pgt@pgt.com
+      - PGADMIN_DEFAULT_PASSWORD=pgt
+    depends_on:
+      - postgresql-airflow
