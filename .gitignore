@@ -1,3 +1,4 @@
 /1_airflow_postgresql
 data
 logs
+__pycache__
