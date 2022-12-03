@@ -5,8 +5,7 @@ volumes:
   pgadmin-data:
 
 services:
-
-  redis:
+    redis:
         hostname: redis
         container_name: redis
         image: ${IMAGE_NAME_REDIS}:${IMAGE_NAME_REDIS_TAG}
@@ -18,7 +17,7 @@ services:
         environment:
             - REDIS_PORT=6379
 
-  redis-insights:
+    redis-insights:
         hostname: redis-insights
         container_name: redis-insights
         image: ${IMAGE_NAME_REDISINSIGHT}:${IMAGE_NAME_REDISINSIGHT_TAG}
@@ -27,7 +26,7 @@ services:
         volumes:
             - ./data/redisinsight:/db
 
-  postgres:
+    postgres:
         hostname: postgres
         container_name: postgres
         image: ${IMAGE_NAME_POSTGRES}:${IMAGE_NAME_POSTGRES_TAG}
@@ -38,7 +37,7 @@ services:
             POSTGRES_PASSWORD: airflow
             POSTGRES_DB: airflow
 
-  pgadmin:
+    pgadmin:
         hostname: pgadmin
         container_name: pgadmin
         image: ${IMAGE_NAME_PGADMIN}:${IMAGE_NAME_PGADMIN_TAG}
@@ -50,7 +49,7 @@ services:
             - PGADMIN_DEFAULT_EMAIL=airflow@airflow.com
             - PGADMIN_DEFAULT_PASSWORD=airflow
 
-  airflow-webserver:
+    airflow-webserver:
         hostname: airflow-webserver
         container_name: airflow-webserver
         command: webserver
@@ -59,7 +58,7 @@ services:
             - ./dags:/opt/airflow/dags
             - ./packages:/opt/airflow/packages
             - ./logs/webserver:/opt/airflow/logs
-        user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
+        user: "${AIRFLOW_UID}:${AIRFLOW_GID}"
         depends_on:
             - redis
             - postgres
@@ -79,7 +78,7 @@ services:
             AIRFLOW__WEBSERVER__ENABLE_PROXY_FIX: 'False'
             AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: 10
 
-  airflow-scheduler:
+    airflow-scheduler:
         hostname: airflow-scheduler
         container_name: airflow-scheduler
         command: scheduler
@@ -88,7 +87,7 @@ services:
             - ./dags:/opt/airflow/dags
             - ./packages:/opt/airflow/packages
             - ./logs/scheduler:/opt/airflow/logs
-        user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
+        user: "${AIRFLOW_UID}:${AIRFLOW_GID}"
         depends_on:
             - redis
             - postgres
@@ -106,7 +105,7 @@ services:
             AIRFLOW__WEBSERVER__ENABLE_PROXY_FIX: 'False'
             AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: 10
 
-  airflow-worker:
+    airflow-worker:
         hostname: airflow-worker
         container_name: airflow-worker
         # deploy:
@@ -117,7 +116,7 @@ services:
             - ./dags:/opt/airflow/dags
             - ./packages:/opt/airflow/packages
             - ./logs/worker:/opt/airflow/logs
-        user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
+        user: "${AIRFLOW_UID}:${AIRFLOW_GID}"
         depends_on:
             - redis
             - postgres
@@ -135,22 +134,20 @@ services:
             AIRFLOW__WEBSERVER__ENABLE_PROXY_FIX: 'False'
             AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: 10
 
-  airflow-init:
+    airflow-init:
         hostname: airflow-init
         container_name: airflow-init
         command: version
         image: ${IMAGE_NAME_AIRFOW}:${IMAGE_NAME_AIRFOW_TAG}
         volumes:
-            - ./dags:/opt/airflow/dags
-            - ./packages:/opt/airflow/packages
             - ./logs/init:/opt/airflow/logs
-        user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
+        user: "${AIRFLOW_UID}:${AIRFLOW_GID}"
         depends_on:
             - redis
             - postgres
         environment:
-            _AIRFLOW_DB_UPGRADE: 'true'
-            _AIRFLOW_WWW_USER_CREATE: 'true'
+            _AIRFLOW_DB_UPGRADE: 'True'
+            _AIRFLOW_WWW_USER_CREATE: 'True'
             _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
             _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
             AIRFLOW__CORE__EXECUTOR: CeleryExecutor
@@ -166,16 +163,14 @@ services:
             AIRFLOW__WEBSERVER__ENABLE_PROXY_FIX: 'False'
             AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: 10
 
-  flower:
+    flower:
         hostname: flower
         container_name: flower
         command: celery flower
         image: ${IMAGE_NAME_AIRFOW}:${IMAGE_NAME_AIRFOW_TAG}
         volumes:
-            - ./dags:/opt/airflow/dags
-            - ./packages:/opt/airflow/packages
             - ./logs/flower:/opt/airflow/logs
-        user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
+        user: "${AIRFLOW_UID}:${AIRFLOW_GID}"
         depends_on:
             - redis
             - postgres

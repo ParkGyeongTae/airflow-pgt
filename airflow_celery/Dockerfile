@@ -1,6 +1,16 @@
 FROM apache/airflow:2.4.1-python3.8
 
-USER airflow
+USER root
+
+# ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    python -m pip install --upgrade pip
+
+RUN apt-get install sudo -y && \
+    echo 'airflow ALL=NOPASSWD: ALL' >> /etc/sudoers
+
+# USER airflow
 
 # RUN apt-get update && \
 #     # apt-get install net-tools -y && \
