@@ -55,7 +55,7 @@ services:
         command: webserver
         image: ${IMAGE_NAME_AIRFOW}:${IMAGE_NAME_AIRFOW_TAG}
         volumes:
-            - ./dags:/opt/airflow/dags
+            # - ./dags:/opt/airflow/dags
             - ./packages:/opt/airflow/packages
             - ./logs/webserver:/opt/airflow/logs
         user: "${AIRFLOW_UID}:${AIRFLOW_GID}"
