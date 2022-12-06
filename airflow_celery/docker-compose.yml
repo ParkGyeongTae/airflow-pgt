@@ -57,7 +57,7 @@ services:
         volumes:
             # - ./dags:/opt/airflow/dags
             - ./packages:/opt/airflow/packages
-            - ./logs/webserver:/opt/airflow/logs
+            - ./logs:/opt/airflow/logs
         user: "${AIRFLOW_UID}:${AIRFLOW_GID}"
         depends_on:
             - redis
@@ -87,7 +87,7 @@ services:
         volumes:
             - ./dags:/opt/airflow/dags
             - ./packages:/opt/airflow/packages
-            - ./logs/scheduler:/opt/airflow/logs
+            - ./logs:/opt/airflow/logs
         user: "${AIRFLOW_UID}:${AIRFLOW_GID}"
         depends_on:
             - redis
@@ -116,7 +116,7 @@ services:
         volumes:
             - ./dags:/opt/airflow/dags
             - ./packages:/opt/airflow/packages
-            - ./logs/worker:/opt/airflow/logs
+            - ./logs:/opt/airflow/logs
         user: "${AIRFLOW_UID}:${AIRFLOW_GID}"
         depends_on:
             - redis
@@ -141,7 +141,7 @@ services:
         command: version
         image: ${IMAGE_NAME_AIRFOW}:${IMAGE_NAME_AIRFOW_TAG}
         volumes:
-            - ./logs/init:/opt/airflow/logs
+            - ./logs:/opt/airflow/logs
         user: "${AIRFLOW_UID}:${AIRFLOW_GID}"
         depends_on:
             - redis
@@ -170,7 +170,7 @@ services:
         command: celery flower
         image: ${IMAGE_NAME_AIRFOW}:${IMAGE_NAME_AIRFOW_TAG}
         volumes:
-            - ./logs/flower:/opt/airflow/logs
+            - ./logs:/opt/airflow/logs
         user: "${AIRFLOW_UID}:${AIRFLOW_GID}"
         depends_on:
             - redis
