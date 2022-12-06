@@ -11,10 +11,10 @@ dag = DAG (
 	description = 'Python Operator Sample',
 	default_args = {'owner': 'ParkGyeongTae'})
 
-def func_xcom_push_2(**context):
-    xcom_value = 'xcom_push_value_2'
-    return context['task_instance'].xcom_push(key = 'xcom_push_key_2', value = xcom_value)
+def func_xcom_push_3(**context):
+    xcom_key, xcom_value = 'xcom_push_key_3', 'xcom_push_value_3'
+    return context['task_instance'].xcom_push(key = xcom_key, value = xcom_value)
 
-task_xcom_push_2 = PythonOperator(task_id = 'xcom_push_2', python_callable = func_xcom_push_2, dag = dag, do_xcom_push = True)
+task_xcom_push_3 = PythonOperator(task_id = 'xcom_push_3', python_callable = func_xcom_push_3, dag = dag, do_xcom_push = True)
 
-task_xcom_push_2
+task_xcom_push_3
