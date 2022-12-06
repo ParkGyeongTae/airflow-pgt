@@ -3,7 +3,7 @@ from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
 import pprint
 
-dag = DAG (
+dag = DAG(
 	dag_id = '4_python_operator_context',
 	start_date = datetime(2022, 12, 3),
 	schedule_interval = '* * * * *',
