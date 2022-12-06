@@ -2,10 +2,6 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
 
-default_args = {
-	'owner' : 'ParkGyeongTae'
-}
-
 dag = DAG (
 	dag_id = '1_python_operator',
 	start_date = datetime(2022, 12, 3),
