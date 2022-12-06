@@ -17,27 +17,27 @@ dag = DAG (
 	)
 
 def print_1():
-	print("111")
+	# print("111")
 	return "111"
 
 def print_2():
-	print("222")
+	# print("222")
 	return "222"
 
 def print_3():
-	print("333")
+	# print("333")
 	return "333"
 
 def print_4():
-	print("444")
+	# print("444")
 	return "444"
 
 def print_5():
-	print("555")
+	# print("555")
 	return "555"
 
 def print_6():
-	print("666")
+	# print("666")
 	return "666"
 
 print_11 = PythonOperator (
