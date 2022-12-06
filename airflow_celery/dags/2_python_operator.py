@@ -7,69 +7,39 @@ dag = DAG (
 	start_date = datetime(2022, 12, 3),
 	schedule_interval = '* * * * *',
 	catchup = False,
-	tags = ['test'],
+	tags = ['server_local', 'detail_test'],
 	description = 'Python Operator Sample',
-	default_args = {'owner': 'ParkGyeongTae'}
-	)
+	default_args = {'owner': 'ParkGyeongTae'})
 
-def print_1():
-	print("111")
-	return "111"
+def func_print_1():
+	print('1')
+	return '1'
 
-def print_2():
-	print("222")
-	return "222"
+def func_print_2():
+	print('2')
+	return '2'
 
-def print_3():
-	print("333")
-	return "333"
+def func_print_3():
+	print('3')
+	return '3'
 
-def print_4():
-	print("444")
-	return "444"
+def func_print_4():
+	print('4')
+	return '4'
 
-def print_5():
-	print("555")
-	return "555"
+def func_print_5():
+	print('5')
+	return '5'
 
-def print_6():
-	print("666")
-	return "666"
+def func_print_6():
+	print('6')
+	return '6'
 
-print_11 = PythonOperator (
-	task_id         = 'print_1',
-	python_callable = print_1,
-	dag             = dag
-    )
+task_print_1 = PythonOperator(task_id = 'print_1', python_callable = func_print_1, dag = dag, do_xcom_push = False)
+task_print_2 = PythonOperator(task_id = 'print_2', python_callable = func_print_2, dag = dag, do_xcom_push = False)
+task_print_3 = PythonOperator(task_id = 'print_3', python_callable = func_print_3, dag = dag, do_xcom_push = False)
+task_print_4 = PythonOperator(task_id = 'print_4', python_callable = func_print_4, dag = dag, do_xcom_push = False)
+task_print_5 = PythonOperator(task_id = 'print_5', python_callable = func_print_5, dag = dag, do_xcom_push = False)
+task_print_6 = PythonOperator(task_id = 'print_6', python_callable = func_print_6, dag = dag, do_xcom_push = False)
 
-print_22 = PythonOperator(
-	task_id         = 'print_2',
-	python_callable = print_2,
-	dag             = dag
-    )
-
-print_33 = PythonOperator (
-	task_id         = 'print_3',
-	python_callable = print_3,
-	dag             = dag
-    )
-
-print_44 = PythonOperator(
-	task_id         = 'print_4',
-	python_callable = print_4,
-	dag             = dag
-    )
-
-print_55 = PythonOperator (
-	task_id         = 'print_5',
-	python_callable = print_5,
-	dag             = dag
-    )
-
-print_66 = PythonOperator(
-	task_id         = 'print_6',
-	python_callable = print_6,
-	dag             = dag
-    )
-
-print_11 >> print_22 >> print_33 >> print_44 >> print_55 >> print_66
+task_print_1 >> task_print_2 >> task_print_3 >> task_print_4 >> task_print_5 >> task_print_6
